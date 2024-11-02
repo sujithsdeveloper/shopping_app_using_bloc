@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:shopping_app/view/HomeScreen/home_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopping_app/view/bloc/api_products_bloc.dart';
-import 'package:shopping_app/view/bloc/product_details_bloc.dart';
+import 'package:shopping_app/view/bloc/product_bloc/api_products_bloc.dart';
+import 'package:shopping_app/view/bloc/ProductDetail_bloc/product_details_bloc.dart';
 
 void main() {
   runApp(const MyApp());

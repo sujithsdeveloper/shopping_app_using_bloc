@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:shopping_app/controller/products_controller.dart';
+import 'package:shopping_app/services/API_service.dart';
 import 'package:shopping_app/model/productDetailModel.dart';
 import 'package:shopping_app/model/productsModel.dart';
 import 'package:http/http.dart' as http;
@@ -12,10 +12,11 @@ class ApiProductsBloc extends Bloc<ApiProductsEvent, ApiProductsState> {
   ApiProductsBloc() : super(ProductsInitialState()) {
     on<ApiProductsEvent>((event, emit) async {
       emit(ProductLoadingState());
+
       try {
-        await ProductsController().GetProducts();
-        emit(ProductsLoadedState(
-            ProductDataList: ProductsController.productList ?? []));
+        await ApiService().getProducts();
+        emit(
+            ProductsLoadedState(productDataList: ApiService.productList ?? []));
       } catch (e) {
         emit(ProductsErrorState(error: e.toString()));
       }
